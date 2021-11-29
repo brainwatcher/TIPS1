@@ -1,7 +1,0 @@
-cd C:\Users\psylab706\Documents\simnibs_examples\ernie\test\
-{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cd')" style="font-weight:bold">cd</a>
-Unable to change current folder to
-'C:\Users\psylab706\Documents\simnibs_examples\ernie\test' (Name is nonexistent or
-not a folder).
-} 
-ex

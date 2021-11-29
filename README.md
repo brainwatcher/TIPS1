@@ -1,14 +1,8 @@
-steps: 
-1. Modify the "compileTI.m" file with the correct cuda path. 
-2. Copy the leadfield data in the data folder with the same format as samples.
-3. Run "first.m" to compile and addpath
-
-Time profile:
-
-(NVIDIA GeForce RTX 2060 SUPER)
-
-ROI phase: 16.9s
-
-Cortex phase: 48.7s
-
-Parallel reduction decrease the method time comsumption by nealy 30%
+Steps: 
+1. Run "FIRST.m" file to include path and compile CUDA program.
+2. Run "main.m" file to optimal TIs parameters.
+Note:
+1. The plot demo functions are in the folder "Photos".
+2. The first time optimization for each subject needs more time to prepare input leadfield for GPU.
+3. The 'tet' is nearly 10 times expensive than 'tri' element type.
+ 

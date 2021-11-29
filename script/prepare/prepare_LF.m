@@ -5,13 +5,20 @@ if ~exist(inputFilePath ,'dir')
 end
 inputFile = fullfile(inputFilePath,['input' cfg.type '.mat']);
 %%
+switch cfg.type
+    case 'tri'
+        disp('Element type is triangle in gray matter middle layer ...');
+    case 'tet'
+        disp('Element type is tetraheron in gray and white matter in brain ...');
+end
+%%
 if exist(inputFile,'file')
     disp('Already existed input data for GPU, omit producing input mat file.');
     S = load(inputFile);
     Data = S.Data;
+    mesh = S.mesh;
 else
     disp('The first time prepare input data for GPU.');
-    disp(['Element type is ' cfg.type ' ...']);
     t0 = tic;
     switch cfg.type
         case 'tri'

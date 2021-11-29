@@ -1,23 +1,29 @@
-function [ROI_node_idx] = TargetSurf(dataRoot,subMark,gmS,cfgROI)
-%% ROI_node_idx
+function [target_node_idx_all] = TargetSurf(dataRoot,subMark,gmS,cfgTarget)
+%% target_node_idx
 m2mPath = fullfile(dataRoot,subMark, ['m2m_' subMark]);
-switch cfgROI.type
+disp(['Target region number is ' num2str(cfgTarget.num)]);
+target_node_idx = false(size(gmS.nodes,1),cfgTarget.num);
+switch cfgTarget.type
     case 'atlas'
-        disp(['Define ROI using atlas ' cfg.ROI.atlas '...']);
-        [labels, snames] = subject_atlas(gmS, m2mPath, cfg.ROI.atlas);
-        ROI_idx = find(strcmpi(snames, cfg.ROI.name));
-        if isempty(ROI_idx)
-            error('No corresponding ROI name for this atlas!');
-        else
-            ROI_node_idx = labels.node_data{1}.data == ROI_idx;
+        disp(['Define target using atlas ' cfgTarget.atlas '...']);
+        [labels, snames] = subject_atlas(gmS, m2mPath, cfgTarget.atlas);
+        for i = 1:cfgTarget.num
+            target_label = find(strcmpi(snames, cfgTarget.name{i}));
+            if isempty(target_label)
+                error('No corresponding ROI name for this atlas!');
+            else
+                target_node_idx(:,i) = labels.node_data{1}.data == target_label;
+            end
         end
     case 'coord'
-        disp('Define ROI using MNI coordinates ... ');
-        coord_sub = mni2subject_coords(cfg.ROI.coord_MNI, m2mPath);%坐标转换
-        ROI_node_idx = unique(dsearchn(gmS.nodes,coord_sub));
+        disp('Define target using MNI coordinates ... ');
+        for i = 1:cfgTarget.num
+            coord_sub = mni2subject_coords(cfgTarget.center(i,:), m2mPath);%MNI to subject space
+            target_node_idx(:,i) = vecnorm(gmS.nodes-coord_sub,2,2)<cfgTarget.r(i);
+        end
     otherwise
-        error('Wrong ROI type!');
+        error('Wrong target type!');
 end
-
+target_node_idx_all = any(target_node_idx,2);
 end
 

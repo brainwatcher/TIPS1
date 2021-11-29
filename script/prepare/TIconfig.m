@@ -6,12 +6,27 @@ if ~exist(simDir,'dir')
     mkdir(simDir);
 end
 %% build simulation config here
-%% ROI tri
+%% element type
 cfg.type = 'tri';
-cfg.ROI.type = 'atlas';% atlas, coord
-cfg.ROI.atlas = 'DK40';
-cfg.ROI.name = 'lh.insula';
-%% ROI tet
+%%　tri ROI
+% cfg.ROI.type = 'atlas';% atlas, coord
+% cfg.ROI.atlas = 'DK40';
+% cfg.ROI.name{1} = 'lh.insula';
+cfg.ROI.num = 1;
+cfg.ROI.type = 'coord';% atlas, coord
+cfg.ROI.center = [0,0,0]; % need to input ACC MNI XYZ
+cfg.ROI.r = 2;
+%% tri penalty
+% Penalty.type = 'atlas';% atlas, coord
+% Penalty.atlas = 'DK40';
+% Penalty.name{1} = 'lh.caudalanteriorcingulate';
+cfg.Penalty.type = 'coord';% atlas, coord
+cfg.Penalty.num = 2;
+cfg.Penalty.coef = 1;
+cfg.Penalty.center = [10,10,10;-10,-10,-10]; % need to input DLPFC MNI XYZ
+cfg.Penalty.r = [4,4];
+
+%%  tet
 % cfg.type = 'tet';
 % cfg.ROI.type = 'atlas';
 % cfg.ROI.atlas = 'AAL3';
@@ -20,11 +35,6 @@ cfg.ROI.name = 'lh.insula';
 % ROI.name = 'lh.caudalanteriorcingulate';
 %% nt
 cfg.nt = 0;
-%% penalty
-cfg.P = 0;
-% P.type = 'atlas';% atlas, coord
-% P.atlas = 'DK40';
-% P.name = 'lh.caudalanteriorcingulate';
 %% method
 cfg.method_ROI = 0;
 cfg.method_Other = 0;

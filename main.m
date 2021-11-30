@@ -50,7 +50,8 @@ disp(['GPU calculation takes time : ' num2str(toc(tg2)) ' s...']);
 T2 = CortexTable(T1,A_Other);
 T4m = T2(1,:);
 U4m = T2U(T4m);
-save(fullfile(workSpace,'elec4.mat'),'T2','T4m','U4m');
+electrodes = Data.electrodes;
+save(fullfile(workSpace,'elec4.mat'),'T2','T4m','U4m','electrodes');
 disp(T4m);
 showU(U4m);
 %% 关闭日志文件

@@ -1,8 +1,3 @@
-%% addPath
-root = pwd;
-codepath = fullfile(root,'script');
-addpath(genpath(codepath));
-disp('add path success...');
 %% gpu compile
 cd(fullfile(codepath,'CUDA'));
 compileTI('ROI');

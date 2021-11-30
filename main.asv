@@ -59,6 +59,8 @@ disp(['Start time : ' start])
 disp(['End time : ' datestr(now)])
 diary off
 %% 
+H = ex_plotElec1010;
+SAVE
 
 
 

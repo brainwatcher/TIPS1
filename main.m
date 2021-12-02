@@ -58,6 +58,7 @@ showU(U4m);
 disp(['Start time : ' start])
 disp(['End time : ' datestr(now)])
 diary off
+%% 
 
 
 

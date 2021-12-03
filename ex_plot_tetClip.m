@@ -34,8 +34,9 @@ axis equal;
 h = plotCrossSection(h,TR_section,Eam_norm,Eam_Ub);
 hold on;
 if ~isempty(EV_ROI.Edge)
-    warning('No ROI in this clipped section!');
     h = plotContour(h,EV_ROI,dof,'k-','LineWidth',2);
+else
+    disp('No ROI in this clipped section!!!');
 end
 h = plotContour(h,EV_out,dof,'k-','LineWidth',5);
 axis off;

@@ -1,9 +1,9 @@
 function [Data,mesh] = prepare_LF(dataRoot,subMark,cfg)
-inputFilePath = fullfile(dataRoot,subMark,'TI_sim_result',cfg.type);
+inputFilePath = fullfile(dataRoot,subMark,'TI_sim_result');
 if ~exist(inputFilePath ,'dir')
     mkdir(inputFilePath );
 end
-inputFile = fullfile(inputFilePath,['input' cfg.type '.mat']);
+DataFile = fullfile(inputFilePath,['Data_' cfg.type '.mat']);
 %%
 switch cfg.type
     case 'tri'
@@ -12,9 +12,9 @@ switch cfg.type
         disp('Element type is tetraheron in gray and white matter in brain ...');
 end
 %%
-if exist(inputFile,'file')
+if exist(DataFile,'file')
     disp('Already existed input data for GPU, omit producing input mat file.');
-    S = load(inputFile);
+    S = load(DataFile);
     Data = S.Data;
     mesh = S.mesh;
 else
@@ -26,6 +26,6 @@ else
         case 'tet'
             [Data,mesh] = LFTet(dataRoot,subMark);
     end
-    save(inputFile,'Data','mesh','-v7.3');
+    save(DataFile,'Data','mesh','-v7.3');
     disp(['Prepare with ' cfg.type ' type using ' num2str(toc(t0)) 'seconds.']);
 end

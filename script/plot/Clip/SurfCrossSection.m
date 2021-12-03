@@ -1,8 +1,7 @@
-function [EV,p0,p1] = SurfCrossSection(dataRoot,subMark,str,key)
+function [EV,p0,p1] = SurfCrossSection(TR,str,node)
 %UNTITLED Summary of this function goes here
 %% head shell surface mesh
-[XYZmark,XYZvalue,dof] = str2XYZ(str);
-[node,~,simNIBS_face] = MeshfromSimnibs(dataRoot,subMark);
+[XYZmark,XYZvalue] = str2XYZ(str);
 %% 4 point cross section plane
 p0 = floor(min(node)-5);
 p1 = ceil(max(node)+5);
@@ -16,13 +15,7 @@ switch XYZmark
 end
 TR4 = triangulation([1,2,3;1,4,2],pt4);
 %% 
-face = cell(length(key),1);
-TR = cell(length(key),1);
-EV = cell(length(key),1);
-for i = 1:length(key)
-    face{i} = double(simNIBS_face(simNIBS_face(:,4)==key(i),1:3));
-    TR{i} = simpleTR(triangulation(face{i},node));
-    [EV{i}.Edge,EV{i}.Points]= OneContour(TR4,TR{i});
-end
+[EV.Edge,EV.Points]= OneContour(TR4,TR);
+
 
 

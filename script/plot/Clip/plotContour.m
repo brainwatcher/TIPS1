@@ -5,10 +5,13 @@ opt = varargin;
 %% Contours C. make contour
 figure(h);
 hold on;
-for i = 1:length(EV)
-    x = EV{i}.Points(EV{i}.Edge(:,1),dof(1));
-    y = EV{i}.Points(EV{i}.Edge(:,2),dof(2));
-    plot(x,y,opt{:});
-end
+n = size(EV.Edge,1);
+x = zeros(n+1,1);
+y = zeros(n+1,1);
+x(1:n) = EV.Points(EV.Edge(:,1),dof(1));
+y(1:n) = EV.Points(EV.Edge(:,2),dof(2));
+x(end) = x(1);
+y(end) = y(1);
+plot(x,y,opt{:});
 end
 

@@ -7,8 +7,12 @@ edgeC = SortEdge(intSurface.edges);
 if length(edgeC)>1
     [~,i] =  max(cellfun(@length,edgeC));
 else
-    i = 1;   
+    i = 1;
 end
-edge = edgeC{i};
+if ~isempty(edgeC)
+    edge = edgeC{i};
+else
+    edge = [];
+end
 end
 

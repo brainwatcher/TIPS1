@@ -18,8 +18,9 @@ switch cfgTarget.type
     case 'coord'
         disp('Define target using MNI coordinates ... ');
         coord_sub = mni2subject_coords(cfgTarget.center, m2mPath);%MNI to subject space
-        for i = 1:cfgTarget.num   
-            target_node_idx(:,i) = vecnorm(gmS.nodes-coord_sub(i,:),2,2)<cfgTarget.r(i);
+        for i = 1:cfgTarget.num
+            
+            target_node_idx(:,i) = vecnorm(gmS.nodes-coord_sub,2,2)<cfgTarget.r(i);
         end
     otherwise
         error('Wrong target type!');

@@ -41,6 +41,7 @@ tg1 = tic;
 [A_ROI,C_ROI] = ROIWrapper(Nr,E_ROI_p,cmb,cu,area_ROI_p,cfg.method_ROI);
 disp(['GPU calculation takes time : ' num2str(toc(tg1)) ' s...']);
 T1 = ROIScreen(A_ROI,C_ROI,cu,thres);
+disp(['Survived combinations number is ' num2str(size(T1,1)) '...']);
 %% step 2, Other sort
 disp('Step 2. Calculate the Eam in Other brain area with screened parameters.');
 gpuDevice(1);

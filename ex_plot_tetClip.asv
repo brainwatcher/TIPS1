@@ -10,7 +10,7 @@ load(fullfile(workSpace,'cfg.mat'));
 %% predefine clipStr
 % clipStr = 'z=45'; % in sub space
 %%  Or get clipStr from ROI center
-XYZmark  = 3;
+XYZmark  = 2;
 m2mPath = fullfile(dataRoot,subMark, ['m2m_' subMark]);
 center_sub = mni2subject_coords(cfg.ROI.center, m2mPath);
 switch XYZmark 
@@ -47,15 +47,12 @@ h = figure;
 axis equal;
 h = plotCrossSection(h,TR_section,Eam_norm,Eam_Ub);
 hold on;
-%% plot ROI countour
 if ~isempty(EV_ROI.Edge)
     for i = 1:size(EV_ROI.Edge,2)
-        h = plotContour(h,EV_ROI.Points,EV_ROI.Edge{i},dof,'k-','LineWidth',2);
+        h = plotContour(h,EV_ROI,dof,'k-','LineWidth',2);
     end
 else
     disp('No ROI in this clipped section!!!');
 end
-%% plot out contour
-[~,im] = max(cellfun(@length,EV_out.Edge,'un',1));
-h = plotContour(h,EV_out.Points,EV_out.Edge{im},dof,'k-','LineWidth',5);
+h = plotContour(h,EV_out,dof,'k-','LineWidth',5);
 axis off;

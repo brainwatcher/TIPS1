@@ -11,7 +11,7 @@ gpuDevice
 
 3. Edit the  **cuda**  path in "compileTI.m" file, then run the "first_*.m" file.
 4. Install SIMNIBS and include its MATLAB functions path. 
-1. Run "FIRST.m" file to include path and compile CUDA program.
+5. Run  _headreco_  and  _tdcsleadfield_  for the subject.
 2. Run "main.m" file to optimal TIs parameters.
 
 Note:

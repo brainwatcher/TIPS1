@@ -15,7 +15,7 @@ cfg.type = 'tet';
 cfg.ROI.num = 1;
 cfg.ROI.type = 'coord';% atlas, coord
 cfg.ROI.center = [1 18 39]; % need to input ACC MNI XYZ
-cfg.ROI.r = 2;
+cfg.ROI.r = 3;
 %% tri penalty
 % Penalty.type = 'atlas';% atlas, coord
 % Penalty.atlas = 'DK40';

@@ -9,7 +9,7 @@ mex -setup
 gpuDevice
 ```
 
-3. Edit the  **cuda**  path in  _compileTI.m_  file, then run the  _first_*.m_  file.
+3. Edit the  **cuda**  path in  _compileTI.m_  file, then run the  _first*.m_  file.
 4. Install SIMNIBS and include its MATLAB functions path. 
 5. Run  [_headreco_](https://simnibs.github.io/simnibs/build/html/documentation/command_line/headreco.html?highlight=headreco)  and  [_tdcsleadfield_](https://simnibs.github.io/simnibs/build/html/documentation/sim_struct/tdcsleadfield.html#tdcsleadfield-doc)  for the subject. 
     (Or you could run "./script/SIMNIBS_LF/SIMNIBS_pipeline.m".)

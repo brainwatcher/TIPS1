@@ -1,4 +1,16 @@
-Steps: 
+Steps:
+1. Install MSVC 2017 or 2019, then run the following command in MATLAB.
+```
+mex -setup
+```
+2. Install latest cuda runtime, then run the following command in MATLAB.
+
+```
+gpuDevice
+```
+
+3. Edit the  **cuda**  path in "compileTI.m" file, then run the "first_*.m" file.
+4. Install SIMNIBS and include its MATLAB functions path. 
 1. Run "FIRST.m" file to include path and compile CUDA program.
 2. Run "main.m" file to optimal TIs parameters.
 

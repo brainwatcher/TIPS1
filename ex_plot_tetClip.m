@@ -1,10 +1,11 @@
 dataRoot = 'C:\Users\psylab706\Documents\simnibs_examples';
+% dataRoot = 'E:\MyLabFiles\TI_Simulation';
 subMark = 'ernie';
 simMark = 'test_tri';
 workSpace = fullfile(dataRoot,subMark,'TI_sim_result',simMark);
 %% load U
 S = load(fullfile(workSpace,'elec4.mat'));
-clipStr = 'z=50';
+clipStr = 'z=45';
 Eam_Ub = 0.4;
 %% load cfg in tet
 load(fullfile(workSpace,'cfg.mat'));
@@ -25,7 +26,7 @@ TR_ROI = simpleTR(triangulation(face_ROI,DT_ROI.Points));
 EV_ROI = SurfCrossSection(TR_ROI,clipStr,node);
 %% clip section interpolation
 Eam = Onetime(Data_tet.E,S.U4m);
-[TR_section,eIdx] = TetCrossSection(mesh_tet.DT,clipStr);
+[TR_section,eIdx] = TetCrossSection(m_tet.DT,clipStr);
 Eam_norm = vecnorm(Eam(eIdx,:),2,2);
 [XYZmark,XYZvalue,dof] = str2XYZ(clipStr);
 %%

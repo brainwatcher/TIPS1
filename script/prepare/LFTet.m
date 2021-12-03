@@ -1,7 +1,7 @@
 function [Data,mesh] = LFTet(dataRoot,subMark)
 %LFTET Summary of this function goes here
 %   Detailed explanation goes here
-LFPath = fullfile(dataRoot,subMark,'leadfieldAll');
+LFPath = fullfile(dataRoot,subMark,'leadfield_tet');
 LFFile = fullfile(LFPath,[subMark '_leadfield_EEG10-10_UI_Jurak_2007.hdf5']);
 if exist(LFFile,'file')~=2
     warning('Leadfield file for whole brain not existed! Now run simNIBS corresponding pipeline.');

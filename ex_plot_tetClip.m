@@ -4,21 +4,22 @@ simMark = 'test_tri';
 workSpace = fullfile(dataRoot,subMark,'TI_sim_result',simMark);
 %% load U
 S = load(fullfile(workSpace,'elec4.mat'));
-clipStr = 'z=33';
+clipStr = 'z=50';
 Eam_Ub = 0.4;
 %% load cfg in tet
 load(fullfile(workSpace,'cfg.mat'));
+%%
 cfg.type = 'tet';
-[Data_tet,mesh_tet] = prepare_LF(dataRoot,subMark,cfg);
-%% Out contour 
+[Data_tet,m_tet] = prepare_LF(dataRoot,subMark,cfg);
+%% Out contour
 [node,~,simNIBS_face] = MeshfromSimnibs(dataRoot,subMark);
 csfMark = 1003;
 face_out = double(simNIBS_face(simNIBS_face(:,4)==csfMark,1:3));
 TR_out = simpleTR(triangulation(face_out,node));
 EV_out = SurfCrossSection(TR_out,clipStr,node);
 %% ROI contour
-ROI_idx = TargetRegionIdx(dataRoot,subMark,mesh,cfg.ROI,cfg.type);
-DT_ROI = simpleTR(triangulation(mesh_tet.DT.ConnectivityList(ROI_idx,:),mesh_tet.DT.Points));
+ROI_idx = TargetRegionIdx(dataRoot,subMark,m_tet,cfg.ROI,cfg.type);
+DT_ROI = simpleTR(triangulation(m_tet.DT.ConnectivityList(ROI_idx,:),m_tet.DT.Points));
 face_ROI = getSurf(DT_ROI.ConnectivityList);
 TR_ROI = simpleTR(triangulation(face_ROI,DT_ROI.Points));
 EV_ROI = SurfCrossSection(TR_ROI,clipStr,node);
@@ -32,6 +33,9 @@ h = figure;
 axis equal;
 h = plotCrossSection(h,TR_section,Eam_norm,Eam_Ub);
 hold on;
-h = plotContour(h,EV_ROI,dof,'k-','LineWidth',2);
+if ~isempty(EV_ROI.Edge)
+    warning('No ROI in this clipped section!');
+    h = plotContour(h,EV_ROI,dof,'k-','LineWidth',2);
+end
 h = plotContour(h,EV_out,dof,'k-','LineWidth',5);
 axis off;

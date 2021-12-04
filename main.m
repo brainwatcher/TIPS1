@@ -1,7 +1,7 @@
 %% 输入信息和参数
 dataRoot = 'C:\Users\psylab706\Documents\simnibs_examples';%被试数据根目录
 subMark = 'ernie';
-simMark = 'test_tet_ACC_noPenalty';
+simMark = 'test_tet_ACC_noPenalty_r5_mO2';
 workSpace = fullfile(dataRoot,subMark,'TI_sim_result',simMark);
 %%
 cfg = TIconfig(dataRoot,subMark,simMark);

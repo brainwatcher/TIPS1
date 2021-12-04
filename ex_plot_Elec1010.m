@@ -1,6 +1,6 @@
 dataRoot = 'C:\Users\psylab706\Documents\simnibs_examples';%被试数据根目录
 subMark = 'ernie';
-simMark = 'test_tri';
+simMark = 'test_tet_ACC_noPenalty_r10';
 workSpace = fullfile(dataRoot,subMark,'TI_sim_result',simMark);
 %% load U
 S = load(fullfile(workSpace,'elec4.mat'));

@@ -1,16 +1,16 @@
 dataRoot = 'C:\Users\psylab706\Documents\simnibs_examples';
 % dataRoot = 'E:\MyLabFiles\TI_Simulation';
 subMark = 'ernie';
-simMark = 'test_tet_ACC_noPenalty_r10';
+simMark = 'test_tet_ACC_noPenalty_r5_mO2';
 workSpace = fullfile(dataRoot,subMark,'TI_sim_result',simMark);
 %% load U
 Eam_Ub = 0.25;
+XYZmark  = 1;
 S = load(fullfile(workSpace,'elec4.mat'));
 load(fullfile(workSpace,'cfg.mat'));
 %% predefine clipStr
-% clipStr = 'z=45'; % in sub space
+% clipStr = 'x=5'; % in sub space
 %%  Or get clipStr from ROI center
-XYZmark  = 2;
 m2mPath = fullfile(dataRoot,subMark, ['m2m_' subMark]);
 center_sub = mni2subject_coords(cfg.ROI.center, m2mPath);
 switch XYZmark
@@ -35,6 +35,7 @@ EV_out = SurfCrossSection(TR_out,clipStr,node);
 ROI_idx = TargetRegionIdx(dataRoot,subMark,m_tet,cfg.ROI,cfg.type);
 DT_ROI = simpleTR(triangulation(m_tet.DT.ConnectivityList(ROI_idx,:),m_tet.DT.Points));
 face_ROI = getSurf(DT_ROI.ConnectivityList);
+TR_ROI = simpleTR(triangulation(face_ROI,DT_ROI.Points));
 EV_ROI = SurfCrossSection(TR_ROI,clipStr,node);
 %% clip section interpolation
 Eam = Onetime(Data_tet.E,S.U4m);

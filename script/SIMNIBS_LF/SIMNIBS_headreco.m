@@ -7,7 +7,7 @@ function SIMNIBS_headreco(dataRoot,subMark)
 % 如果没有进行头模型建立的话先运行 headreco 进行头模型的创建，‘subMark’代表受试者的编号等标识，得到的头模型数据
 % 'm2m_[subMark]'文件夹、 '[subMark].msh'文件、
 % '[subMark]_T1ls_conform.nii.gz'压缩文件在‘dataRoot’根目录下
-if exist(fullfile(dataRoot,subMark,[subMark '.msh']),file)
+if exist(fullfile(dataRoot,subMark,[subMark '.msh']),'file')
     disp('The subject mesh has been created...');
     return;
 else

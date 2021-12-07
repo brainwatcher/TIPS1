@@ -35,8 +35,8 @@ axis off;
 lineWidHead = 1;
 lineWidTarget = 2;
 elec_r = 0.34;
-elec_circle1([0 0],'',5,'k','none',lineWidHead,11,[1,1]);
-elec_circle1([0 0],'',4,'k','none',lineWidHead,11,[1,1]);
+elecCircle([0 0],'',5,'k','none',lineWidHead,11,[1,1]);
+elecCircle([0 0],'',4,'k','none',lineWidHead,11,[1,1]);
 line([-5 5],[0 0],'Color','k','LineWidth',lineWidHead);
 line([0 0],[-5 5],'Color','k','LineWidth',lineWidHead);
 line([-0.5 0],[sqrt(25-0.5^2) 5.5],'Color','k','LineWidth',lineWidHead);
@@ -44,15 +44,15 @@ line([0.5 0],[sqrt(25-0.5^2) 5.5],'Color','k','LineWidth',lineWidHead);
 %% Other electrodes
 elecIdxOther= setdiff(elecFigureIdx,[a_elecIdx;b_elecIdx]);
 for i = 1:length(elecIdxOther)
-    elec_circle1(elecXY(elecIdxOther(i),:),elecName(elecIdxOther(i)),elec_r,'k','w',lineWidHead,9,[1,1]);
+    elecCircle(elecXY(elecIdxOther(i),:),elecName(elecIdxOther(i)),elec_r,'k','w',lineWidHead,9,[1,1]);
 end
 %% a electrodes
 for i = 1:size(U.a,1)
-    elec_circle1(elecXY(a_elecIdx(i),:),elecName(a_elecIdx(i)),elec_r,'k',a_elecColor(i,:),lineWidTarget,9,a_curve);
+    elecCircle(elecXY(a_elecIdx(i),:),elecName(a_elecIdx(i)),elec_r,'k',a_elecColor(i,:),lineWidTarget,9,a_curve);
 end
 %% b electrodes
 for i = 1:size(U.b,1)
-    elec_circle1(elecXY(b_elecIdx(i),:),elecName(b_elecIdx(i)),elec_r,'k',b_elecColor(i,:),lineWidTarget,9,b_curve);
+    elecCircle(elecXY(b_elecIdx(i),:),elecName(b_elecIdx(i)),elec_r,'k',b_elecColor(i,:),lineWidTarget,9,b_curve);
 end
 %% colorbar
 set(gca,'CLim',[-2 2],'colorMap',...
@@ -62,25 +62,25 @@ colorbar;
 % h = maxfigwin();%绘图窗口最大化
 % 
 % %% The head
-% elec_circle1([0 0],'',5,'k','none',lineWidHead,11,[1,1]);
-% elec_circle1([0 0],'',4,'k','none',lineWidHead,11,[1,1]);
+% elecCircle([0 0],'',5,'k','none',lineWidHead,11,[1,1]);
+% elecCircle([0 0],'',4,'k','none',lineWidHead,11,[1,1]);
 % axis equal;
 % line([-5 5],[0 0],'Color','k','LineWidth',lineWidHead);
 % line([0 0],[-5 5],'Color','k','LineWidth',lineWidHead);
 % line([-0.5 0],[sqrt(25-0.5^2) 5.5],'Color','k','LineWidth',lineWidHead);
 % line([0.5 0],[sqrt(25-0.5^2) 5.5],'Color','k','LineWidth',lineWidHead);
-% elec_circle1(Ele4fre1,Lab4fre1_num,ele_r,Col4fre1,col4fre1,lineWidTarget,12,curvatureFre1);
-% elec_circle1(Ele4fre2,Lab4fre2_num,ele_r,Col4fre2,col4fre2,lineWidTarget,12,curvatureFre2);
+% elecCircle(Ele4fre1,Lab4fre1_num,ele_r,Col4fre1,col4fre1,lineWidTarget,12,curvatureFre1);
+% elecCircle(Ele4fre2,Lab4fre2_num,ele_r,Col4fre2,col4fre2,lineWidTarget,12,curvatureFre2);
 % 
 % set(gca,'CLim',[-2 2],'colorMap',...
 %     colorMap,'DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[6.5 5 1]);
 % colorbar;
 % 
-% elec_circle1(Ele_array,Label_idx,ele_r,'k','w',lineWidHead,12,[1,1]);
+% elecCircle(Ele_array,Label_idx,ele_r,'k','w',lineWidHead,12,[1,1]);
 % axis off
 % 
-% elec_circle1(Ele4fre1,Lab4fre1,ele_r,Col4fre1,col4fre1,lineWidTarget,9,curvatureFre1);
-% elec_circle1(Ele4fre2,Lab4fre2,ele_r,Col4fre2,col4fre2,lineWidTarget,9,curvatureFre2);
+% elecCircle(Ele4fre1,Lab4fre1,ele_r,Col4fre1,col4fre1,lineWidTarget,9,curvatureFre1);
+% elecCircle(Ele4fre2,Lab4fre2,ele_r,Col4fre2,col4fre2,lineWidTarget,9,curvatureFre2);
 % 
 
 % %%　plot 

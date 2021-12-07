@@ -4,12 +4,12 @@ subMark = 'ernie';
 simMark = 'test_tet_ACC_noPenalty_r5_mO2';
 workSpace = fullfile(dataRoot,subMark,'TI_sim_result',simMark);
 %% load U
-Eam_Ub = 0.25;
+Eam_Ub = 0.2;
 XYZmark  = 1;
 S = load(fullfile(workSpace,'elec4.mat'));
 load(fullfile(workSpace,'cfg.mat'));
 %% predefine clipStr
-% clipStr = 'x=5'; % in sub space
+% clipStr = 'y=21'; % in sub space
 %%  Or get clipStr from ROI center
 m2mPath = fullfile(dataRoot,subMark, ['m2m_' subMark]);
 center_sub = mni2subject_coords(cfg.ROI.center, m2mPath);
@@ -37,6 +37,14 @@ DT_ROI = simpleTR(triangulation(m_tet.DT.ConnectivityList(ROI_idx,:),m_tet.DT.Po
 face_ROI = getSurf(DT_ROI.ConnectivityList);
 TR_ROI = simpleTR(triangulation(face_ROI,DT_ROI.Points));
 EV_ROI = SurfCrossSection(TR_ROI,clipStr,node);
+%% Penalty contour
+if isfield(cfg,'Penalty')
+    Penalty_idx = TargetRegionIdx(dataRoot,subMark,m_tet,cfg.Penalty,cfg.type);
+    DT_Penalty = simpleTR(triangulation(m_tet.DT.ConnectivityList(Penalty_idx,:),m_tet.DT.Points));
+    face_Penalty = getSurf(DT_Penalty.ConnectivityList);
+    TR_Penalty = simpleTR(triangulation(face_Penalty,DT_Penalty.Points));
+    EV_Penalty = SurfCrossSection(TR_Penalty,clipStr,node);
+end
 %% clip section interpolation
 Eam = Onetime(Data_tet.E,S.U4m);
 [TR_section,eIdx] = TetCrossSection(m_tet.DT,clipStr);
@@ -54,6 +62,16 @@ if ~isempty(EV_ROI.Edge)
     end
 else
     disp('No ROI in this clipped section!!!');
+end
+%% plot Penalty contour (all the contours)
+if isfield(cfg,'Penalty')
+    if ~isempty(EV_Penalty.Edge)
+        for i = 1:length(EV_Penalty.Edge)
+            h = plotContour(h,EV_Penalty.Points,EV_Penalty.Edge{i},dof,'k-','LineWidth',2);
+        end
+    else
+        disp('No Penalty in this clipped section!!!');
+    end
 end
 %% plot out contour (only the longest contour)
 h = plotContour(h,EV_out.Points,EV_out.Edge{1},dof,'k-','LineWidth',5);

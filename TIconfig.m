@@ -19,12 +19,12 @@ cfg.ROI.r = 5;
 %% tri penalty
 % Penalty.type = 'atlas';% atlas, coord
 % Penalty.atlas = 'DK40';
-% Penalty.name{1} = 'lh.caudalanteriorcingulate';
+% Penalty.name = 'lh.caudalanteriorcingulate';
 % cfg.Penalty.type = 'coord';% atlas, coord
-% cfg.Penalty.num = 2;
-% cfg.Penalty.coef = 1;
-% cfg.Penalty.center = [10,10,10;-10,-10,-10]; % need to input DLPFC MNI XYZ
-% cfg.Penalty.r = [4,4];
+cfg.Penalty.num = 2;
+cfg.Penalty.coef = 2;
+cfg.Penalty.center = [-44 6 33;43 9 30]; % need to input DLPFC MNI XYZ
+cfg.Penalty.r = [30,30];
 
 %%  tet
 % cfg.type = 'tet';

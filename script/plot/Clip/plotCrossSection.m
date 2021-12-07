@@ -12,6 +12,7 @@ cData = interp1(x0,colourmap,x);
 figure(h);
 patch('Faces',TR.ConnectivityList,'Vertices',TR.Points,'FaceVertexCData',cData,'FaceColor','flat','EdgeColor','none');
 hc = colorbar(gca,'FontSize',11);
+colormap turbo;
 caxis([xMin xMax])
 set(get(hc,'Title'),'string','V/m');
 end

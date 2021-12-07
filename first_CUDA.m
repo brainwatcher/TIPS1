@@ -1,3 +1,5 @@
+root = pwd;
+codepath = fullfile(root,'script');
 %% gpu compile
 cd(fullfile(codepath,'CUDA'));
 compileTI('ROI');

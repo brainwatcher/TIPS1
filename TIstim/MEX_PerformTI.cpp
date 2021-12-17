@@ -131,9 +131,9 @@ void mexFunction(int nlhs, mxArray* plhs[], int nrhs, const mxArray* prhs[]) {
 	//暂时先硬编程，调试通过后改成软编程
 	//初始幅值为0
 	//幅值
-	nWrite = print_COM(hCOM1, c_OutputState1_close, sizeof(c_OutputState1_close) / sizeof(const char));
+	nWrite = print_COM(hCOM1, c_OutputState1, sizeof(c_OutputState1) / sizeof(const char));
 	Sleep(1000);
-	nWrite = print_COM(hCOM2, c_OutputState2_close, sizeof(c_OutputState2_close) / sizeof(const char));
+	nWrite = print_COM(hCOM2, c_OutputState2, sizeof(c_OutputState2) / sizeof(const char));
 
 	//刺激幅值和持续时间设置
 	double delaytime = 0.01;//时间步长

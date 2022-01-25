@@ -32,16 +32,11 @@ gpuDevice
 9. For each subject, you could follow [_leadfield_](https://simnibs.github.io/simnibs/build/html/documentation/sim_struct/tdcsleadfield.html#tdcsleadfield-doc) to get gray matter middle surface.
     (Or you could run "SIMNIBS_LF_tet.m".) 
 10.. Run _TIPSconfig_GUI.mlapp.m_ to set the optimal parameters. (Or you could use _TIPSconfig.m_). The configurations are stored in the "cfg" variable.
-11. Run OpenTIPS(cfg) in command line to optimal TIs parameters.
+11. Run OpenTIPS(cfg) in command lito optimal TIs parameters.
 12. Run  _post_plot.m_ file to plot results.
-****
-Note:
-1. Some plot demo functions are in the folder "ex_Figures".
-2. The first time optimization for each subject needs more time to prepare input leadfield for GPU.
-****
-Citation
-1. [_SIMNIBS_](https://simnibs.github.io/simnibs/build/html/index.html)
-Saturnino, G. B., Siebner, H. R., Thielscher, A., & Madsen, K. H. (2019). Accessibility of cortical regions to focal TES: Dependence on spatial position, safety, and practical constraints. NeuroImage, 203, 116183.
-2. [_ACID_](
- 
 
+Note:
+
+1. The plot demo functions are in the folder "Photos".
+2. The first time optimization for each subject needs more time to prepare input leadfield for GPU.
+ 

@@ -1,4 +1,5 @@
 TIPS（temporal interference parameter simulation）
+
 Authors: Zhang Wei(weisheep@mail.ustc.edu.cn) and Ma Ru (maru@mail.ustc.edu.cn)
 
 This toolbox aims at temporal interference simulation (TIS) optimization with GPU acceleration.   
@@ -52,5 +53,6 @@ Ruthotto L, Kugel H, Olesch J, Fischer B, Modersitzki J, Burger M, and Wolters C
 Automated anatomical labelling atlas 3. Rolls, E. T., Huang, C. C., Lin, C. P., Feng, J., & Joliot, M., Neuroimage, 2020, 206, 116189, doi:10.1016/j.neuroimage.2019.116189
 ****
 Lisence
+
 TIPS is copyrighted © by its authors and licensed under GPL v3.
 

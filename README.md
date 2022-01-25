@@ -34,12 +34,14 @@ gpuDevice
 9. For each subject, you could follow [_leadfield_](https://simnibs.github.io/simnibs/build/html/documentation/sim_struct/tdcsleadfield.html#tdcsleadfield-doc) to get tetrahdron leadfield.
     (Or you could run "SIMNIBS_LF_tet.m".) 
 10. Run _TIPSconfig_GUI.mlapp.m_ to set the optimal parameters. (Or you could use _TIPSconfig.m_). The configurations are stored in the "cfg" variable.
-11. Run OpenTIPS(cfg) in command line to optimal TIs parameters.
+11. Run OpenTIPS(cfg) in command line Or _main.m_ file to optimal TIs parameters.
 12. Run  _post_plot.m_ file to plot results.
 ****
 Note:
 1. Some plot demo functions are in the folder "ex_Figures".
-2. The first time optimization for each subject needs more time to prepare input leadfield for GPU.
+2. The first time runing optimization for each subject needs more time to prepare input leadfield for GPU. The prepared single float format leadfield is stored under subject folder.
+3. The _dataRoot_ variable is the root directory of all the subjects. _subMark_ variable is name or mark of a subject under root directory. The leadfield and orientation (optional) files are stored in the 'TI_sim_result' folder under each subject directory.
+Each TIS optimal configuration and result is stored under the 'TI_sim_result' folder, with folder name _simMark_ variable.
 ****
 Citation
 1. [_SIMNIBS_](https://simnibs.github.io/simnibs/build/html/index.html)

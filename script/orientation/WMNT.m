@@ -1,13 +1,14 @@
+function WMNT(dataRoot,subMark,DTImode)
 t0 = tic;
 baseDir = pwd;
-dataRoot = 'C:\Users\psylab706\Documents\simnibs_examples';
-subMark = 'ernie';
+% dataRoot = 'C:\Users\psylab706\Documents\simnibs_examples';
+% subMark = 'ernie';
 subDir = fullfile(dataRoot,subMark);
 OriDir = fullfile(subDir,'orientation');
 if ~exist(OriDir,'dir')
     mkdir(OriDir);
 end
-DTImode = 2;
+% DTImode = 2;
 switch DTImode
     case 1 % get first eigenvector from nii2mesh in SIMNIBS
         tenserNii = [subMark '_tensor.msh'];
@@ -68,7 +69,7 @@ switch DTImode
         nt_elem_WM = nt_elem_WM./vecnorm(nt_elem_WM,2,2);
 %         nt2 = nt_elem_WM;
     otherwise
-            error('Wrong white mattar mode...');
+            error('Wrong DTI mode in white mattar!');
 end
 savePath = fullfile(dataRoot,subMark,'orientation');
 if ~exist(savePath,'dir')

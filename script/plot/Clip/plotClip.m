@@ -15,20 +15,24 @@ DT_ROI = simpleTR(triangulation(m_tet.DT.ConnectivityList(ROI_idx,:),m_tet.DT.Po
 face_ROI = getSurf(DT_ROI.ConnectivityList);
 TR_ROI = simpleTR(triangulation(face_ROI,DT_ROI.Points));
 %% Penalty contour
-if isfield(cfg,'Penalty')
+if cfg.Penalty.num>0
     Penalty_idx = TargetRegionIdx(dataRoot,subMark,m_tet,cfg.Penalty,cfg.type);
     DT_Penalty = simpleTR(triangulation(m_tet.DT.ConnectivityList(Penalty_idx,:),m_tet.DT.Points));
     face_Penalty = getSurf(DT_Penalty.ConnectivityList);
     TR_Penalty = simpleTR(triangulation(face_Penalty,DT_Penalty.Points));
 end
 %% clip section interpolation
-Eam = Onetime(Data_tet.E,U);
+if isfield(U, 'a')
+    Eam = Onetime(Data_tet.E,U);
+else
+    Eam = OnetimeTES(Data_tet.E,U);
+end
 %%
 for i = 1:length(clipStr)
     %%
     EV_out = SurfCrossSection(TR_out,clipStr{i},node);
     EV_ROI = SurfCrossSection(TR_ROI,clipStr{i},node);
-    if isfield(cfg,'Penalty')
+    if cfg.Penalty.num>0
         EV_Penalty = SurfCrossSection(TR_Penalty,clipStr{i},node);
     end
     %%
@@ -49,7 +53,7 @@ for i = 1:length(clipStr)
         disp('No ROI in this clipped section!!!');
     end
     %% plot Penalty contour (all the contours)
-    if isfield(cfg,'Penalty')
+    if cfg.Penalty.num>0
         if ~isempty(EV_Penalty.Edge)
             for j = 1:length(EV_Penalty.Edge)
                 h = plotContour(h,EV_Penalty.Points,EV_Penalty.Edge{j},dof,'k-','LineWidth',2);

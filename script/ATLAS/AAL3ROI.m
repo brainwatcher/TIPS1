@@ -1,11 +1,9 @@
-function ROI_coord_MNI = AAL3ROI(idx)
-p = fileparts(mfilename('fullpath'));
-aalDir = fullfile(p,'AAL3');
+function ROI_coord_MNI = AAL3ROI(AAL3Dir,idx)
 file = 'AAL3v1_1mm.nii';
-v=spm_vol(fullfile(aalDir,file));
+v=spm_vol(fullfile(AAL3Dir,file));
 data=spm_read_vols(v);
-%% ROI label
-S = load(fullfile(aalDir,'ROI_MNI_V7_1mm_List.mat'));
+%% ROI read 
+S = load(fullfile(AAL3Dir,'ROI_MNI_V7_1mm_List.mat'));
 ID = [S.ROI.ID]';
 name = {S.ROI.Nom_L}';
 i = find(ID==idx);

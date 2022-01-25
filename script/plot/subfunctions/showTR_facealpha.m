@@ -11,6 +11,7 @@ attributes = {'ncols',3};
 validColor = @(x) validateattributes(x,{'numeric'},attributes);
 addParameter(p,'facecolor',default_facecolor,validColor);
 % addParameter(p,'edgecolor',default_edgecolor,validColor);
+addParameter(p,'Parent',gcf);
 addParameter(p,'limit',[],@(x)ischar(x)&&~isempty(regexp(x,'[x-zX-Z]', 'once')) && ~isempty(regexp(x,'[><=&|]', 'once')));
 parse(p,TR,varargin{:})
 

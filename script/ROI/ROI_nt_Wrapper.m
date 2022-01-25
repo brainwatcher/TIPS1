@@ -1,4 +1,4 @@
-function [A_ROI,C0] = ROIWrapper(N,E0,c0,beta,area,method)
+function [A_ROI,C0] = ROInt_Wrapper(N,E0,c0,beta,area,method)
 %% C0
 C0 = int32(zeros(size(c0,1)*3,size(c0,2)));
 c_seq = [1,2,3,4;1,3,2,4;1,4,2,3];
@@ -17,8 +17,8 @@ Kc = getKcROI(size(E0,1),length(beta),size(C0,1),blockSize);
 %% vflag
 vflag = true;
 %% if 
-if length(size(E0))==3
-    a = ROI(N,E0,C0,beta,method,Kc,vflag,area,blockSize);
+if length(size(E0))==2
+    a = ROInt(N,E0,C0,beta,method,Kc,vflag,area,blockSize);
     A_ROI = reshape(a,size(C0,1),[])';
 end
 
